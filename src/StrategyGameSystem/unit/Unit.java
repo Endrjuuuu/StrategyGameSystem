@@ -1,17 +1,18 @@
 package StrategyGameSystem.unit;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 public class Unit {
 
     private String type;
+    private int id;
+    private String name;
+    private List<Weapon> weapons;
     private Map<String, Object> properties;
 
-    public Unit(String type) {
-        this.type = type;
+    public Unit(int id) {
+        this.id = id;
+        weapons = new LinkedList<>();
         properties = new HashMap<>();
     }
 
@@ -23,12 +24,28 @@ public class Unit {
         return type;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void addWeapon(Weapon weapon) {
+        weapons.add(weapon);
+    }
+
+    public List<Weapon> getWeapons() {
+        return weapons;
+    }
+
     public void setProperty(String propertyName, Object propertyValue) {
         properties.put(propertyName, propertyValue);
     }
 
     public Object getProperty(String propertyName) {
-        return properties.get(propertyName);
+        return properties.getOrDefault(propertyName, "[brak wartosci]");
     }
 }
 
